@@ -48,7 +48,7 @@ class Hamburger {
             this.extra1 = name;
             this.extra1Price = price;
         } else {
-            System.out.println("Cannot add more toppings");
+            System.out.println("basic: Cannot add more toppings: " + getCurrentExtras());
         }
 
     }
@@ -58,7 +58,7 @@ class Hamburger {
             this.extra2 = name;
             this.extra2Price = price;
         } else {
-            System.out.println("Cannot add more toppings");
+            System.out.println("basic: Cannot add more toppings: " + getCurrentExtras());
         }
 
     }
@@ -68,7 +68,7 @@ class Hamburger {
             this.extra3 = name;
             this.extra3Price = price;
         } else {
-            System.out.println("Cannot add more toppings");
+            System.out.println("basic: Cannot add more toppings: " + getCurrentExtras());
         }
 
     }
@@ -78,17 +78,24 @@ class Hamburger {
             this.extra4 = name;
             this.extra4Price = price;
         } else {
-            System.out.println("Cannot add more toppings");
+            System.out.println("basic: Cannot add more toppings: " + getCurrentExtras() + " " + getTotalExtras());
         }
 
     }
 
+
+
     public boolean canAdd() {
+        System.out.println(getCurrentExtras() + " vs " + getTotalExtras());
         if(currentExtras < totalExtras) {
             return true;
         }else {
             return false;
         }
+    }
+
+    public int getCurrentExtras() {
+        return currentExtras;
     }
 
     public String getBun() {
@@ -176,9 +183,8 @@ class Healthy extends Hamburger{
             this.healthyExtra1 = name;
             this.healthyExtra1Price = price;
         } else {
-            System.out.println("Cannot add more toppings");
+            System.out.println("healthy: Cannot add more toppings");
         }
-
     }
     public void addHealthyExtra2(String name, double price) {
         if(canAdd()) {
@@ -187,9 +193,8 @@ class Healthy extends Hamburger{
             this.healthyExtra2 = name;
             this.healthyExtra2Price = price;
         } else {
-            System.out.println("Cannot add more toppings");
+            System.out.println("healthy: Cannot add more toppings");
         }
-
     }
     public void addHealthyExtra3(String name, double price) {
         if(canAdd()) {
@@ -198,9 +203,8 @@ class Healthy extends Hamburger{
             this.healthyExtra3 = name;
             this.healthyExtra3Price = price;
         } else {
-            System.out.println("Cannot add more toppings");
+            System.out.println("healthy: Cannot add more toppings");
         }
-
     }
 
     public String itemize() {
@@ -231,6 +235,23 @@ class Healthy extends Hamburger{
 
         str += "Total: " + (total + basePrice);
         return str;
+    }
+
+    public int getCurrentExtras() {
+        return currentExtras;
+    }
+
+    public int getTotalHealthyExtras() {
+        return totalHealthyExtras;
+    }
+
+    public int getCurrentHealthyExtras() {
+        return currentHealthyExtras;
+    }
+
+    @Override
+    public double getBasePrice() {
+        return basePrice;
     }
 
     @Override
@@ -266,6 +287,7 @@ class Healthy extends Hamburger{
     public double getHealthyExtra3Price() {
         return healthyExtra3Price;
     }
+
 }
 
 class Deluxe extends Hamburger {
@@ -311,7 +333,6 @@ class Deluxe extends Hamburger {
         this.drink = name;
         this.drinkPrice = price;
     }
-
 
 
     @Override
@@ -365,13 +386,13 @@ public class Main {
         healthy.addExtra3("tomato", 0.50);
         healthy.addExtra4("tomato", 0.50);
         System.out.println(healthy.itemize());
+        System.out.println(healthy.getCurrentExtras());
         System.out.println("------------------------------------------------------------");
 
         Deluxe deluxe = new Deluxe("sesame", "triple");
         deluxe.addChips("sun chips", 2.50);
         deluxe.addDrink("lemon brisk", 2.50);
         deluxe.addExtra1("tomato", 0.50);
-        System.out.println(deluxe.getExtra1());
         System.out.println(deluxe.itemize());
 
     }
